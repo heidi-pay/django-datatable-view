@@ -11,7 +11,7 @@ except ImportError:
 from django.db import models
 from django.db.models import Model, Manager, Q
 from django.core.exceptions import FieldDoesNotExist, ObjectDoesNotExist
-from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str
 from django.utils.safestring import mark_safe
 try:
     from django.forms.utils import flatatt
@@ -110,13 +110,13 @@ class Column(six.with_metaclass(ColumnMetaclass)):
 
         self.name = None  # Set outside, once the Datatable can put it there
         if label is not None:
-            label = smart_text(label)
+            label = smart_str(label)
         self.sources = sources or []  # TODO: Process for real/virtual
         if not isinstance(self.sources, (tuple, list)):
             self.sources = [self.sources]
         self.separator = separator
         self.label = label
-        self.empty_value = smart_text(empty_value)
+        self.empty_value = smart_str(empty_value)
         self.localize = localize
         self.sortable = sortable
         self.visible = visible
